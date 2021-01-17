@@ -13,8 +13,17 @@
 <%= render "layouts/loading" %>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-
-<%= yield %>
+<div class="container">
+  <%= render "layouts/nav" %>
+  <div class="row">
+    <div class="col col-4">
+      <%= yield :menu %>
+    </div>
+    <div class="col">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </div>
+  </div>
+</div>
 </body>
 <footer>
   <%= render "layouts/footer" %>
