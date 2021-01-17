@@ -11,12 +11,19 @@
  * It is generally better to create a new file per style scope.
  *
 
- require font-awesome
- require_tree .
- require_self
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
  */
 
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "bootstrap_custom";
+
+@import "admin";
+@import "categories";
+@import "orders";
+@import "products";
+@import "users";
+@import "welcome";
 
 #loading {
     position: absolute;
