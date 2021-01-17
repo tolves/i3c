@@ -26,7 +26,7 @@ $(document).ready(function () {
         console.log(data)
         Rails.ajax({
             type: "POST",
-            url: '/admins/categories/' + $(this).val() + '/meta_data',
+            url: '/admin/categories/' + $(this).val() + '/meta_data',
             data: new URLSearchParams(data).toString(),
             dataType: 'json',
             accept: 'json',

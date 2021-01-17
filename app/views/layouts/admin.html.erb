@@ -18,10 +18,10 @@
   <%= render "layouts/navbar" %>
   <div class="row">
     <div class="col col-4">
-      <%= render "admins/menu" %>
+      <%= render "admin/menu" %>
     </div>
     <div class="col">
-      <%= render "admins/nav" if controller_name != 'admin' %>
+      <%= render "admin/nav" if controller_name != 'admin' %>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
   </div>

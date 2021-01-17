@@ -1,4 +1,4 @@
-class Admins::CategoriesController < ApplicationController
+class CategoriesController < ApplicationController
   before_action :authenticate_admin!
   layout "admin"
 
@@ -13,7 +13,7 @@ class Admins::CategoriesController < ApplicationController
   def create
     @category = Category.new params_category
     @category.save!
-    redirect_to admins_category_path @category
+    redirect_to category_path @category
   end
 
   def show

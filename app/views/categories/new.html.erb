@@ -1,5 +1,5 @@
 <div>
-  <%= form_for(@category, url: admins_categories_path(@category), html: { method: :post }) do |f| %>
+  <%= form_for(@category, url: categories_path(@category), html: { method: :post }) do |f| %>
     <div class="field">
       <%== f.label :title %><br>
       <%= f.text_field :title, autocomplete: "title", placeholder: :name, class: "p-1 border-1" %>

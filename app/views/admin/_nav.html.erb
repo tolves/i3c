@@ -1,6 +1,6 @@
 <%= nav do %>
-  <%= nav_link :list, send('admins_' + controller_name.to_s + '_path') %>
-  <%= nav_link :add_new, send('new_admins_' + controller_name.singularize + '_path') %>
+  <%= nav_link :list, send(controller_name.to_s + '_path') %>
+  <%= nav_link :add_new, send('new_' + controller_name.singularize + '_path') %>
   <li class="nav-item">
     <a class="nav-link" href="#">Export</a>
   </li>
