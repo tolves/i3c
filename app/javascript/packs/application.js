@@ -14,6 +14,7 @@ global.jQuery = $
 
 require("packs/custom")
 
+import 'stylesheets/application'
 import "bootstrap"
 
 //= require_tree .
