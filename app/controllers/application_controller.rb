@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from StandardError do |exception|
-    puts exception.message
+    flash.notice exception.message
     # respond_to do |format|
     #   format.json { head :forbidden, content_type: 'text/html' }
     #   # format.html { redirect_to :root, notice: exception.message }
