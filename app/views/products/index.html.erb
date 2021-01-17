@@ -1,2 +1,6 @@
-<%= @out.inspect %>
+<% content_for :menu do %>
+  <%= render "layouts/admin_menu" %>
+<% end %>
+<%= render "nav" %>
+<%= render partial: "table", locals: { products: @products } %>
 <%= link_to :new, new_product_path %>
