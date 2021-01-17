@@ -10,12 +10,18 @@
 </head>
 
 <body>
+<%= render "layouts/loading" %>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
 <div class="container">
+  <%= render "layouts/navbar" %>
   <div class="row">
+    <div class="col col-4">
+      <%= render "admins/menu" %>
+    </div>
     <div class="col">
+      <%= render "admins/nav" if controller_name != 'admin' %>
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
   </div>

@@ -10,7 +10,7 @@
   <tbody>
   <% products.each do |p| %>
     <tr>
-      <th scope="row"><%= p.title %></th>
+      <th scope="row"><%= link_to p.title, admins_product_path(p) %></th>
       <td><%= p.band %></td>
       <td><%= p.price %></td>
       <td><%= p.updated_at %></td>

@@ -1,7 +1,10 @@
-class ProductsController < ApplicationController
+class Admins::ProductsController < ApplicationController
+  layout "admin"
+
   def index
     @products = Product.all
   end
+
   def new
     @product = Product.new
   end
@@ -9,7 +12,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new params_product
     @product.save!
-    redirect_to product_path @product
+    redirect_to admins_product_path @product
   end
 
   def show

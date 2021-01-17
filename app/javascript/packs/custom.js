@@ -26,7 +26,7 @@ $(document).ready(function () {
         console.log(data)
         Rails.ajax({
             type: "POST",
-            url: '/admin/categories/' + $(this).val() + '/meta_data',
+            url: '/admins/categories/' + $(this).val() + '/meta_data',
             data: new URLSearchParams(data).toString(),
             dataType: 'json',
             accept: 'json',
@@ -36,7 +36,7 @@ $(document).ready(function () {
             success: function (response) {
                 $("#meta_data").empty();
                 for (var i in response) {
-                    $('#meta_data').append("<label For='product[meta_data]["+ response[i] +"]'>"+ response[i] +"</label>: <input tyee='text' name='product[meta_data]["+response[i]+"]' id='product[meta_data]["+response[i]+"]'></br>");
+                    $('#meta_data').append("<label For='product[meta_data][" + response[i] + "]'>" + response[i] + "</label>: <input tyee='text' name='product[meta_data][" + response[i] + "]' id='product[meta_data][" + response[i] + "]'></br>");
                 }
             }
         })

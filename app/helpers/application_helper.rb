@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def nav_link(text, path)
-    options = current_page?(path) ? { class: "nav-link active" } : { class: "nav-link" }
+    options = current_page?(path) ? { class: "nav-link active disabled" } : { class: "nav-link" }
     content_tag(:li, { class: "nav-item" }) do
       link_to text, path, options
     end

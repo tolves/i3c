@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resource :admin, controller: :admin #singular recourse
-  resources :products, path: '/admin/products'
-  resources :orders, path: '/admin/orders'
-  resources :users, path: '/admin/users'
-  resources :categories, path: '/admin/categories' do
-    post 'meta_data', to: 'categories#meta_data'
+  namespace :admins do
+    resources :products
+    resources :orders
+    resources :users
+    resources :categories do
+      post 'meta_data', to: 'categories#meta_data'
+    end
   end
   resource :account, controller: :users
 end

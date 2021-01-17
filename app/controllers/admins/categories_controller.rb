@@ -1,4 +1,6 @@
-class CategoriesController < ApplicationController
+class Admins::CategoriesController < ApplicationController
+  layout "admin"
+
   def index
     @categories = Category.all
   end
@@ -10,7 +12,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new params_category
     @category.save!
-    redirect_to category_path @category
+    redirect_to admins_category_path @category
   end
 
   def show
