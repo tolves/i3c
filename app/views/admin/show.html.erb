@@ -1,4 +1,12 @@
-<%= link_to  :products, products_path %> </br>
-<%= link_to  :orders, orders_path %> </br>
-<%= link_to  :users, users_path %> </br>
-<%= link_to  :categories, categories_path %> </br>
+<% content_for :menu do %>
+  <ul class="list-group">
+    <li class="list-group-item"><%= link_to :products, products_path %> </li>
+    <li class="list-group-item"><%= link_to :orders, orders_path %></li>
+    <li class="list-group-item"><%= link_to :users, users_path %></li>
+    <li class="list-group-item"><%= link_to :categories, categories_path %></li>
+  </ul>
+<% end %>
+
+<% content_for :content do %>
+  content
+<% end %>
