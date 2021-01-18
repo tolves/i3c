@@ -14,6 +14,8 @@
       <td><%= p.band %></td>
       <td><%= p.price %></td>
       <td><%= p.updated_at %></td>
+      <td><%= link_to :edit, edit_product_path(p) %></td>
+      <td><%= link_to :delete, product_path(p), method: :delete, data: { confirm: "Are you sure?" } %></td>
     </tr>
   <% end %>
   </tbody>

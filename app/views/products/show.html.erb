@@ -1,1 +1,32 @@
-<%= @product.inspect %>
+<table class="table table-hover">
+  <tr>
+    <td>Title:</td>
+    <td><%= @product.title %></td>
+  </tr>
+  <tr>
+    <td>Band:</td>
+    <td><%= @product.band %></td>
+  </tr>
+  <tr>
+    <td>Price:</td>
+    <td><%= @product.price %></td>
+  </tr>
+  <tr>
+    <td>Description:</td>
+    <td><%= @product.description %></td>
+  </tr>
+  <% @product.meta_data.each do |index, meta| %>
+    <tr>
+      <td><%= index.titleize %>:</td>
+      <td><%= meta %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Created At:</td>
+    <td><%= @product.created_at %></td>
+  </tr>
+  <tr>
+    <td>Updated At:</td>
+    <td><%= @product.updated_at %></td>
+  </tr>
+</table>
