@@ -1,1 +1,18 @@
-<%= @category.inspect %>
+<table class="table table-hover">
+  <tr>
+    <td colspan="2">
+      <h5><%= @category.title %></h5>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <h5>Meta Data:</h5>
+    </td>
+  </tr>
+  <% @category.meta_data.each do |meta| %>
+    <tr>
+      <td></td>
+      <td><%= meta %></td>
+    </tr>
+  <% end %>
+</table>
