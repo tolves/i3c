@@ -11,6 +11,7 @@ This is a web application that provides customisation services for gaming PC.
 - [x] Product view meta_data, edit, delete
 - [x] Rich text editor
 - [x] Users CRUD
+- [ ] orders controller
 - [ ] Product inventory inbound
 - [ ] Product Warehouse operation (fast inbound)
 - [ ] Product inventory - 1 when ordered (outbound)
