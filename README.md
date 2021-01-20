@@ -10,7 +10,7 @@ This is a web application that provides customisation services for gaming PC.
 - [x] Category view meta_data, edit, delete
 - [x] Product view meta_data, edit, delete
 - [x] Rich text editor
-- [ ] Users CRUD
+- [x] Users CRUD
 - [ ] Product inventory inbound
 - [ ] Product Warehouse operation (fast inbound)
 - [ ] Product inventory - 1 when ordered (outbound)
