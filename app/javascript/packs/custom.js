@@ -32,45 +32,12 @@ $(document).ready(function () {
         meta_data($(this).val());
     })
 
-    $('div#cpu').click(function () {
-        products(this);
-        console.log("ssd clicked");
-    })
-
-    $('div#ssd').click(function () {
-        console.log("ssd clicked");
+    $('div#category').click(function () {
+        products($(this).attr("value"));
     })
 
     console.log("custom js file loaded");
 });
-
-function products(params) {
-    console.log("cpu clicked");
-    console.log(params);
-    // var data = {id: 1}
-    // console.log(data)
-    Rails.ajax({
-        type: "POST",
-        url: '/admin/categories/5/ajax_products',
-        // data: new URLSearchParams(data).toString(),
-        dataType: 'json',
-        accept: 'json',
-        error: function (xhr, status, error) {
-            console.error('AJAX Error: ' + status + error);
-        },
-        success: function (response) {
-            console.log(response);
-            $("#products").empty();
-            for (var i in response) {
-                $('#products').append("<div id='product' value=" + response[i]['id'] + ">" + response[i]['title'] + "</div>");
-            }
-            // $("#meta_data").empty();
-            // for (var i in response) {
-            //     $('#meta_data').append("<label For='product[meta_data][" + response[i] + "]'>" + response[i] + "</label>: <input tyee='text' name='product[meta_data][" + response[i] + "]' id='product[meta_data][" + response[i] + "]'></br>");
-            // }
-        }
-    })
-}
 
 function meta_data(id) {
     // var data = {category_id: $(this).val()}
@@ -88,6 +55,53 @@ function meta_data(id) {
             for (var i in response) {
                 $('#meta_data').append("<label For='product[meta_data][" + response[i] + "]'>" + response[i] + "</label>: <input tyee='text' name='product[meta_data][" + response[i] + "]' id='product[meta_data][" + response[i] + "]'></br>");
             }
+        }
+    })
+}
+
+function products(id) {
+    console.log("category clicked");
+    // var data = {id: 1}
+    // console.log(data)
+    Rails.ajax({
+        type: "POST",
+        url: "/admin/categories/" + id + "/ajax_products",
+        // data: new URLSearchParams(data).toString(),
+        dataType: 'json',
+        accept: 'json',
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ' + status + error);
+        },
+        success: function (response) {
+            $('#products_' + id).empty();
+            for (var i in response) {
+                $('#products_' + id).append("<div id='product' value=" + response[i]['id'] + ">" + response[i]['title'] + "</div>");
+            }
+            $('#products_' + id).show();
+            $('div#product').click(function () {
+                select_product(this);
+            })
+        }
+    })
+}
+
+function select_product(params) {
+    console.log($(params).attr("value"));
+    product_id = $(params).attr("value")
+    data = {id: product_id}
+    Rails.ajax({
+        type: "POST",
+        url: '/welcome/ajax_session',
+        data: new URLSearchParams(data).toString(),
+        dataType: 'json',
+        accept: 'json',
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ' + status + error);
+        },
+        success: function (response) {
+            console.log(response)
+            $('#products_' + response['category_id']).toggle();
+            $('#selected_' + response['category_id']).html(response['title']);
         }
     })
 }

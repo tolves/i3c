@@ -1,1 +1,12 @@
-welcome
+<div class="col col-4">
+  <%= render "welcome/score" %>
+</div>
+<div class="col">
+  <% @categories.each do |c| %>
+    <div class="row">
+      <div id="category" value=<%= c.id %> class="col-sm"><%= c.title %></div>
+      <div id="selected_<%= c.id %>" class="col-md-auto">please select</div>
+      <div id='products_<%= c.id %>'></div>
+    </div>
+  <% end %>
+</div>
