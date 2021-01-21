@@ -32,7 +32,7 @@ $(document).ready(function () {
         meta_data($(this).val());
     })
 
-    $('div#category').click(function () {
+    $('div.selected_product').click(function () {
         products($(this).attr("value"));
     })
 
@@ -73,11 +73,10 @@ function products(id) {
             console.error('AJAX Error: ' + status + error);
         },
         success: function (response) {
-            $('#products_' + id).empty();
+            $('div#products').empty();
             for (var i in response) {
-                $('#products_' + id).append("<div id='product' value=" + response[i]['id'] + ">" + response[i]['title'] + "</div>");
+                $('div#products').append("<div id='product' value=" + response[i]['id'] + " data-dismiss='modal' aria-label='Close'>" + response[i]['title'] + "</div>");
             }
-            $('#products_' + id).show();
             $('div#product').click(function () {
                 select_product(this);
             })
@@ -100,8 +99,8 @@ function select_product(params) {
         },
         success: function (response) {
             console.log(response)
-            $('#products_' + response['category_id']).toggle();
-            $('#selected_' + response['category_id']).html(response['title']);
+            $('div#selected_' + response['category_id']).html(response['title']);
+            $('div#products').empty();
         }
     })
 }
