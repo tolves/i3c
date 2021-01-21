@@ -17,4 +17,7 @@ Rails.application.routes.draw do
     post 'ajax_products', to: 'categories#ajax_products'
   end
   resource :account, controller: :users
+  resource :welcome do
+    post 'ajax_session', to: 'welcome#ajax_session'
+  end
 end
