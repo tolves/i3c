@@ -8,10 +8,10 @@ class CartsController < ApplicationController
 
   def show
     session[:cart].each do |index, product|
-      next if current_user.cart.lists.exists?(product_id: product['id'])
+      next if !Product.exists?(product['id']) || current_user.cart.lists.exists?(product_id: product['id'])
 
       ActiveRecord::Base.connected_to(role: :writing) do
-        current_user.cart.lists.create!(product_id: product['id'], quantity: 0)
+        current_user.cart.lists.create!(product_id: product['id'], quantity: 1)
       end
     end
     @cart = current_user.cart.lists
