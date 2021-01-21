@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :lists
+  has_many :lists, dependent: :destroy
   belongs_to :category
   has_one :inbound
   serialize :meta_data, Hash
