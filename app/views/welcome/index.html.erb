@@ -8,7 +8,7 @@
         <div id='category' value=<%= c.id %> class="col-2"><span class="align-middle"><%= c.title %></span></div>
         <div id='icon' class="col-2"><%= image_tag("icons/cpu.svg") %></div>
         <div id="selected_<%= c.id %>" class="col selected_product" value=<%= c.id %>>
-          <%= !session[:cart][c.title].blank? ? session[:cart][c.title]['title'] : 'Please choose one' %>
+          <%= !session[:cart][c.title].blank? ? session[:cart][c.title]['title'] : 'Click me to choose one' %>
         </div>
       </div>
     <% end %>
@@ -16,8 +16,8 @@
   <div class="col" id="products"></div>
 </div>
 
-<div class="row fixed-bottom">
+<div class="row fixed-top">
   <div class="col col-6"></div>
   <div class="col col-3">Total:</div>
-  <div class="col col-3"><%= button_to :add_to_cart, new_cart_path, method: :get %></div>
+  <div class="col col-3"><%= button_to :add_to_cart, carts_path, method: :get %></div>
 </div>
