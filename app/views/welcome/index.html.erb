@@ -1,12 +1,21 @@
-<div class="col col-4">
-  <%= render "welcome/score" %>
+<div class="row">
+  <div class="col col-4">
+    <%= render "welcome/score" %>
+  </div>
+  <div class="col">
+    <% @categories.each do |c| %>
+      <div class="row">
+        <div id="category" value=<%= c.id %> class="col-sm"><%= c.title %></div>
+        <div id="selected_<%= c.id %>" class="col-md-auto">please select</div>
+        <div id='products_<%= c.id %>'></div>
+      </div>
+    <% end %>
+  </div>
 </div>
-<div class="col">
-  <% @categories.each do |c| %>
-    <div class="row">
-      <div id="category" value=<%= c.id %> class="col-sm"><%= c.title %></div>
-      <div id="selected_<%= c.id %>" class="col-md-auto">please select</div>
-      <div id='products_<%= c.id %>'></div>
-    </div>
-  <% end %>
+
+<div class="row fixed-bottom">
+  <div class="col col-6"></div>
+  <div class="col col-3">Total:</div>
+  <div class="col col-3"><%= button_to :place_order, new_order_path, method: :get %></div>
+
 </div>
