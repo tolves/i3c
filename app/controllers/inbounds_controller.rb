@@ -1,0 +1,2 @@
+class InboundsController < ApplicationController
+end
