@@ -85,7 +85,6 @@ function products(id) {
 }
 
 function select_product(params) {
-    console.log($(params).attr("value"));
     product_id = $(params).attr("value")
     data = {id: product_id}
     Rails.ajax({
