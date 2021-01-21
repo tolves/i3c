@@ -1,0 +1,16 @@
+<%= @cart.inspect %>
+<div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Quantity</th>
+    </tr>
+    <% @cart.each do |p| %>
+      <tr>
+        <td><%= p.product.id %></td>
+        <td><%= p.product.title %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
