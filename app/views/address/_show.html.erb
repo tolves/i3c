@@ -1,0 +1,5 @@
+<% if current_user.address %>
+  <%= render partial: "address/details", locals: { address: current_user.address } %>
+<% else %>
+  <%= render partial: "address/new", locals: { address: current_user.build_address, path: account_address_path } %>
+<% end %>

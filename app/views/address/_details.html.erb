@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col col-8">
+    <span class="row"><%= address.full_name %></span>
+    <span class="row"><%= address.phone %></span>
+    <span class="row"><%= address.postcode %></span>
+    <span class="row"><%= address.line_1 %></span>
+    <span class="row"><%= address.line_2 %></span>
+    <span class="row"><%= address.line_3 %></span>
+    <span class="row"><%= address.town %></span>
+    <span class="row"><%= address.county %></span>
+    <span class="row"><%= address.instructions %></span>
+    <span class="row"><%= address.security_code %></span>
+  </div>
+  <div class="col">
+    <%= link_to :edit, edit_account_address_path %>
+  </div>
+</div>

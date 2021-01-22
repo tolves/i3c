@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col col-3">
+    Choose a delivery address
+  </div>
+  <div class="col col-auto" id="address_show">
+    <%= render "address/show" %>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col col-3">payment method</div>
+  <div class="col col-auto"></div>
+
+</div>
+<div class="row">
+  <div class="col col-3">Review items and delivery</div>
+  <div class="col col-auto"></div>
+</div>
+
+<%= form_for @order, url: { action: :create } do |f| %>
+
+  <%= f.submit data: { "disable-with": "Saving..." } %>
+<% end %>

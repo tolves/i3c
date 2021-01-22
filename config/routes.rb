@@ -11,12 +11,17 @@ Rails.application.routes.draw do
     resource :inbounds
   end
   resources :orders, path: '/admin/orders'
-  resources :users, path: '/admin/users'
+  # resources :users, path: '/admin/users'
   resources :categories, path: '/admin/categories' do
     post 'meta_data', to: 'categories#meta_data'
     post 'ajax_products', to: 'categories#ajax_products'
   end
-  resource :account, controller: :users
+  resource :account, controller: :users do
+    resources :orders
+    resource :address, controller: :address do
+      get 'refresh'
+    end
+  end
   resource :welcome do
     post 'ajax_session', to: 'welcome#ajax_session'
   end
