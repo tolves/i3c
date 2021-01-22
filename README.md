@@ -11,6 +11,17 @@ This is a web application that provides customisation services for gaming PC.
 - [x] Product view meta_data, edit, delete
 - [x] Rich text editor
 - [x] Users CRUD
+- [ ] AJAX: cart quantity change
+- [ ] polymorphic list, cart&order
+- [ ] cart: save to session if not logged in
+- [ ] welcome#index div#products overload with div#selected
+- [ ] statistics
+- [ ] test cases
+- [ ] Accessories
+- [ ] filter for tables
+- [ ] recommendation in index
+- [ ] photo for product
+- [ ] filter for tables
 - [ ] orders controller
 - [ ] Product inventory inbound
 - [ ] Product Warehouse operation (fast inbound)
