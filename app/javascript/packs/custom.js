@@ -33,7 +33,7 @@ $(document).ready(function () {
     })
 
     $('div.selected_product').click(function () {
-        products($(this).attr("value"));
+        show_products($(this).attr("value"));
     })
 
     console.log("custom js file loaded");
@@ -59,7 +59,7 @@ function meta_data(id) {
     })
 }
 
-function products(id) {
+function show_products(id) {
     console.log("category clicked");
     // console.log(data)
     Rails.ajax({
@@ -72,9 +72,10 @@ function products(id) {
             console.error('AJAX Error: ' + status + error);
         },
         success: function (response) {
-            $('div#products').empty();
+            console.log(response);
+            $('div#products_' + id).empty();
             for (var i in response) {
-                $('div#products').append("<div id='product' value=" + response[i]['id'] + ">" + response[i]['title'] + "</div>");
+                $('div#products_' + id).append("<div id='product' value=" + response[i]['id'] + ">" + response[i]['title'] + "</div>");
             }
             $('div#product').click(function () {
                 select_product($(this).attr("value"));
@@ -99,7 +100,7 @@ function select_product(product_id) {
             console.log(response)
             $('div#selected_' + response['category_id']).html(response['title']);
             $('div#quantity_' + response['category_id']).html(response['quantity']);
-            $('div#products').empty();
+            $('div#products_' + response['category_id']).empty();
         }
     })
 }

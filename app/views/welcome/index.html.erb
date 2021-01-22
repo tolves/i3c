@@ -4,28 +4,32 @@
   </div>
   <div class="col">
     <% @categories.each do |c| %>
-      <div class="row">
+      <div class="row position-relative">
         <div id='category' value=<%= c.id %> class="col-2"><span class="align-middle"><%= c.title %></span></div>
         <div id='icon' class="col-2"><%= image_tag("icons/cpu.svg") %></div>
-        <div class="row col">
-          <% if session[:cart][c.title].blank? %>
-            <div id="selected_<%= c.id %>" class="col selected_product" value=<%= c.id %>>
-              Click me to choose one
-            </div>
-            <div id="quantity_<%= c.id %>" class="col"></div>
-          <% else %>
-            <div id="selected_<%= c.id %>" class="col selected_product" value=<%= c.id %>>
-              <%= session[:cart][c.title]['title'] %>
-            </div>
-            <div id="quantity_<%= c.id %>" class="col">
-              <%= session[:cart][c.title]['quantity'] %>
-            </div>
-          <% end %>
+        <div class="row col position-relative">
+          <div class="col position-absolute">
+            <% if @cart[c.title].blank? %>
+              <div id="selected_<%= c.id %>" class="col selected_product" value=<%= c.id %>>
+                Click me to choose one
+              </div>
+              <div id="quantity_<%= c.id %>" class="col"></div>
+            <% else %>
+              <div id="selected_<%= c.id %>" class="col selected_product" value=<%= c.id %>>
+                <%= @cart[c.title]['title'] %>
+              </div>
+              <div id="quantity_<%= c.id %>" class="col">
+                <%= @cart[c.title]['quantity'] %>
+              </div>
+            <% end %>
+          </div>
+          <div class="col position-absolute bg-secondary" style="z-index: 1">
+            <div id="products_<%= c.id %>" class="bg-info"></div>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
-  <div class="col" id="products"></div>
 </div>
 
 <div class="row fixed-top">
