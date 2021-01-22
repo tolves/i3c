@@ -1,4 +1,3 @@
-<%= @cart.inspect %>
 <div>
   <table>
     <tr>
@@ -6,11 +5,15 @@
       <th>Title</th>
       <th>Quantity</th>
     </tr>
-    <% @cart.each do |p| %>
+    <% @cart.each do |l| %>
       <tr>
-        <td><%= p.product.id %></td>
-        <td><%= p.product.title %></td>
+        <td><%= l.product.id %></td>
+        <td><%= l.product.title %></td>
+        <td><%= l.quantity %></td>
+        <td><%= link_to :remove, cart_path(l), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </table>
 </div>
+
+<%= link_to :place_order, new_order_path %>

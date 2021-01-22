@@ -1,12 +1,8 @@
 class WelcomeController < ApplicationController
   # before_action :authenticate_user!
   before_action :initialize_cart
-  #
-  # def initialize
-  #   # session[:cart]
-  # end
+
   def index
-    @cart = Cart.new
     @categories = Category.all
   end
 
@@ -22,6 +18,7 @@ class WelcomeController < ApplicationController
   private
 
   def initialize_cart
-    session[:cart] ||= {}
+    @cart = session[:cart] ||= {}
   end
+
 end

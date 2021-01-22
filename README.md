@@ -14,8 +14,8 @@ This is a web application that provides customisation services for gaming PC.
 - [x] update product quantity while check cart
 - [x] polymorphic list, cart&order
 - [ ] AJAX: cart quantity change
-- [ ] cart: save to session if not logged in
-- [ ] welcome#index div#products overload with div#selected
+- [x] cart: save to session if not logged in
+- [x] welcome#index div#products overload with div#selected
 - [ ] statistics
 - [ ] test cases
 - [ ] Accessories
