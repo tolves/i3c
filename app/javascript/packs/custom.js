@@ -30,11 +30,11 @@ $(document).ready(function () {
 
     $('select#product_category_id').change(function () {
         meta_data($(this).val());
-    })
+    });
 
     $('div.selected_product').click(function () {
         show_products($(this).attr("value"));
-    })
+    });
 
     console.log("custom js file loaded");
 });
