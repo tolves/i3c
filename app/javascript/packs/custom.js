@@ -61,7 +61,6 @@ function meta_data(id) {
 
 function products(id) {
     console.log("category clicked");
-    // var data = {id: 1}
     // console.log(data)
     Rails.ajax({
         type: "POST",
@@ -75,18 +74,18 @@ function products(id) {
         success: function (response) {
             $('div#products').empty();
             for (var i in response) {
-                $('div#products').append("<div id='product' value=" + response[i]['id'] + " data-dismiss='modal' aria-label='Close'>" + response[i]['title'] + "</div>");
+                $('div#products').append("<div id='product' value=" + response[i]['id'] + ">" + response[i]['title'] + "</div>");
             }
             $('div#product').click(function () {
-                select_product(this);
+                select_product($(this).attr("value"));
             })
         }
     })
 }
 
-function select_product(params) {
-    product_id = $(params).attr("value")
-    data = {id: product_id}
+function select_product(product_id) {
+    console.log(product_id);
+    data = {id: product_id};
     Rails.ajax({
         type: "POST",
         url: '/welcome/ajax_session',
@@ -99,6 +98,7 @@ function select_product(params) {
         success: function (response) {
             console.log(response)
             $('div#selected_' + response['category_id']).html(response['title']);
+            $('div#quantity_' + response['category_id']).html(response['quantity']);
             $('div#products').empty();
         }
     })

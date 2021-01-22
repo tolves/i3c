@@ -12,9 +12,10 @@ class WelcomeController < ApplicationController
 
   def ajax_session
     product = Product.find(params[:id])
-    session[:cart][product.category.title] = product
+    session[:cart][product.category.title] = product.attributes
+    session[:cart][product.category.title][:quantity] = 1
     respond_to do |format|
-      format.json { render json: product.to_json }
+      format.json { render json: session[:cart][product.category.title].to_json }
     end
   end
 

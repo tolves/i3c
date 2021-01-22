@@ -2,13 +2,25 @@
   <div class="col col-3">
     <%= render "welcome/score" %>
   </div>
-  <div class="col col-5">
+  <div class="col">
     <% @categories.each do |c| %>
       <div class="row">
         <div id='category' value=<%= c.id %> class="col-2"><span class="align-middle"><%= c.title %></span></div>
         <div id='icon' class="col-2"><%= image_tag("icons/cpu.svg") %></div>
-        <div id="selected_<%= c.id %>" class="col selected_product" value=<%= c.id %>>
-          <%= !session[:cart][c.title].blank? ? session[:cart][c.title]['title'] : 'Click me to choose one' %>
+        <div class="row col">
+          <% if session[:cart][c.title].blank? %>
+            <div id="selected_<%= c.id %>" class="col selected_product" value=<%= c.id %>>
+              Click me to choose one
+            </div>
+            <div id="quantity_<%= c.id %>" class="col"></div>
+          <% else %>
+            <div id="selected_<%= c.id %>" class="col selected_product" value=<%= c.id %>>
+              <%= session[:cart][c.title]['title'] %>
+            </div>
+            <div id="quantity_<%= c.id %>" class="col">
+              <%= session[:cart][c.title]['quantity'] %>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
