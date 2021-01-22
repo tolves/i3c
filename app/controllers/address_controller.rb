@@ -1,7 +1,13 @@
 class AddressController < ApplicationController
   def create
-    @address = current_user.build_address params_address
-    @address.save!
+    @address = current_user.create_address! params_address
+  end
+
+  def edit
+  end
+
+  def update
+    current_user.address.update! params_address
   end
 
   private

@@ -18,9 +18,7 @@ Rails.application.routes.draw do
   end
   resource :account, controller: :users do
     resources :orders
-    resource :address, controller: :address do
-      get 'refresh'
-    end
+    resource :address, controller: :address
   end
   resource :welcome do
     post 'ajax_session', to: 'welcome#ajax_session'

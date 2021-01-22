@@ -1,0 +1,1 @@
+$("#address_show").html("<%= escape_javascript(render partial: "address/form", locals: { address: current_user.address, path: account_address_path, method: :update } ) %>");
