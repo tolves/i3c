@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :address
+  has_many :lists, dependent: :destroy, :as => :listable
+  has_many :products, through: :lists
 
   enumeration :status
   validates :status, presence: true

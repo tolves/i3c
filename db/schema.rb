@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_21_104027) do
+ActiveRecord::Schema.define(version: 2021_01_22_091310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -109,12 +109,13 @@ ActiveRecord::Schema.define(version: 2021_01_21_104027) do
   end
 
   create_table "lists", force: :cascade do |t|
-    t.bigint "cart_id"
     t.bigint "product_id"
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cart_id"], name: "index_lists_on_cart_id"
+    t.string "listable_type"
+    t.bigint "listable_id"
+    t.index ["listable_type", "listable_id"], name: "index_lists_on_listable"
     t.index ["product_id"], name: "index_lists_on_product_id"
   end
 
