@@ -23,7 +23,6 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] recommendation in index
 - [ ] photo for product
 - [ ] filter for tables
-- [ ] orders controller
 - [ ] Product inventory inbound
 - [ ] Product Warehouse operation (fast inbound)
 - [ ] Product inventory - 1 when ordered (outbound)
@@ -31,3 +30,4 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] Account profile
 - [ ] Orders statistics
 - [ ] Order CRUD, cancel, shipped status
+- [ ] divide admin controllers&user controllers
