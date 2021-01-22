@@ -5,19 +5,22 @@
   <div class="col col-auto" id="address_show">
     <%= render "address/show" %>
   </div>
-
 </div>
+
 <div class="row">
   <div class="col col-3">payment method</div>
   <div class="col col-auto"></div>
-
 </div>
+
 <div class="row">
   <div class="col col-3">Review items and delivery</div>
-  <div class="col col-auto"></div>
+  <div class="col col-auto">
+    <%= current_user.cart.lists.inspect %>
+  </div>
 </div>
 
-<%= form_for @order, url: { action: :create } do |f| %>
-
+<%= form_for @order, url: account_orders_path, method: :post do |f| %>
+  <%= f.label :status %>
+  <%= f.text_field :status %>
   <%= f.submit data: { "disable-with": "Saving..." } %>
 <% end %>
