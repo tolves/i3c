@@ -5,8 +5,9 @@
   <div class="col">
     <% @categories.each do |c| %>
       <div class="row position-relative">
-        <div id='category' value=<%= c.id %> class="col-2"><span class="align-middle"><%= c.title %></span></div>
-        <div id='icon' class="col-2"><%= image_tag("icons/cpu.svg") %></div>
+        <div id='category' value=<%= c.id %> class="col-2"><span class="align-middle"><%= c.title.humanize %></span>
+        </div>
+        <div id='icon' class="col-2"><%= image_tag("icons/#{c.title}.svg", class: "img-fluid icons") %></div>
         <div class="row col position-relative">
           <div class="col position-absolute">
             <% if @cart[c.title].blank? %>

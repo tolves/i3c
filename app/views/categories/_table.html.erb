@@ -7,9 +7,9 @@
   <tbody>
   <% categories.each do |c| %>
     <tr>
-      <td scope="row"><%= link_to c.title, admin_category_path(c) %></td>
+      <td scope="row"><%= link_to c.title.humanize, admin_category_path(c) %></td>
       <td><%= link_to :edit, edit_admin_category_path(c) %></td>
-      <td><%= link_to :delete, admin_category_path(c), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      <!--      <td><%#= link_to :delete, admin_category_path(c), method: :delete, data: { confirm: "Are you sure?" } %></td>-->
     </tr>
   <% end %>
   </tbody>

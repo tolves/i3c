@@ -75,7 +75,6 @@ function show_total() {
             console.error('AJAX Error: ' + status + error);
         },
         success: function (response) {
-            console.log(response);
             $('span#total').html(response);
         }
     })
