@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_000553) do
+ActiveRecord::Schema.define(version: 2021_01_23_162251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 2021_01_23_000553) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "full_name"
     t.string "phone"
     t.string "postcode"
@@ -68,7 +67,9 @@ ActiveRecord::Schema.define(version: 2021_01_23_000553) do
     t.string "security_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -114,17 +115,17 @@ ActiveRecord::Schema.define(version: 2021_01_23_000553) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "listable_type"
     t.bigint "listable_id"
+    t.integer "price", default: 0
     t.index ["listable_type", "listable_id"], name: "index_lists_on_listable"
     t.index ["product_id"], name: "index_lists_on_product_id"
   end
 
-  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.bigint "address_id"
+  create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.integer "amount", default: 0
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
-  belongs_to :address
+  has_one :address, dependent: :destroy, :as => :addressable
   has_many :lists, dependent: :destroy, :as => :listable
   has_many :products, through: :lists
 
