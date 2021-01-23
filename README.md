@@ -29,3 +29,4 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] Orders statistics
 - [ ] Order CRUD, cancel, shipped status
 - [x] divide admin controllers&user controllers
+- [ ] paypal sandbox

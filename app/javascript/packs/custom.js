@@ -20,13 +20,6 @@ $(document).ready(function () {
     //     });
     //     el.find("input[type=text], input[type=submit]").first().focus();
     // }
-    // $('select#product_category_id').change(function () {
-    //     $("#loading").show();
-    //     // var data = {category_id: $(this).val()}
-    //     // console.log(data)
-    //
-    //     $("#loading").hide();
-    // });
 
     $('select#product_category_id').change(function () {
         meta_data($(this).val());
