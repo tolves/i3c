@@ -1,0 +1,4 @@
+$("#products_<%= @product.category.id %>").html("");
+$("#selected_<%= @product.category.id %>").html("<%= escape_javascript(render partial: "welcome/selected", locals: { category: @product.category, cart: session[:cart], product: @product } ) %>");
+$("#icon_<%= @product.category.id %>").html("<%= escape_javascript(render partial: "welcome/image", locals: { img: @product.image } ) %>")
+$("span#total").html("<%= @amount %>");

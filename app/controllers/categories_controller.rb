@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_admin!, except: :ajax_products
+  before_action :authenticate_admin!, except: [:ajax_products, :products]
   layout "admin"
 
   def index
@@ -52,6 +52,11 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       format.json { render json: @category.products.to_json }
     end
+  end
+
+  def products
+    category = Category.find(params[:category_id])
+    @products = category.products
   end
 
   private

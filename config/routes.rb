@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
     resources :categories do
       post 'meta_data', to: 'categories#meta_data'
-      post 'ajax_products', to: 'categories#ajax_products'
+      post 'products', to: 'categories#products'
     end
     resources :users
   end
@@ -24,8 +24,7 @@ Rails.application.routes.draw do
     resource :address, controller: :address
   end
   resource :welcome do
-    post 'ajax_session', to: 'welcome#ajax_session'
-    post 'ajax_total', to: 'welcome#ajax_session_amount'
+    post 'selected', to: 'welcome#selected'
   end
   resource :cart
 end

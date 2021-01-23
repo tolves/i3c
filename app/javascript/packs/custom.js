@@ -103,13 +103,13 @@ $(document).ready(function () {
     //     el.find("input[type=text], input[type=submit]").first().focus();
     // }
 
-    $('select#product_category_id').change(function () {
-        meta_data($(this).val());
-    });
-
-    $('div.selected_product').click(function () {
-        show_products($(this).attr("value"));
-    });
+    // $('select#product_category_id').change(function () {
+    //     meta_data($(this).val());
+    // });
+    //
+    // $('div.selected_product').click(function () {
+    //     show_products($(this).attr("value"));
+    // });
 
     // paypal.Buttons().render('#paypal-button-container');
 

@@ -1,0 +1,6 @@
+<div class="col">
+  <%= link_to product.title, admin_category_products_path(category.id), remote: true, method: :post %>
+</div>
+<div id="quantity_<%= category.id %>" class="col">
+  <%= cart[category.title]['quantity'] %>
+</div>
