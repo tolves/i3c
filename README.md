@@ -21,7 +21,7 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] Accessories
 - [ ] filter for tables
 - [ ] recommendation in index
-- [ ] photo for product
+- [x] image for product
 - [ ] Product Warehouse operation (fast inbound)
 - [ ] Product inventory - 1 when ordered (outbound)
 - [x] welcome controller, ajax select components
