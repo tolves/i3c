@@ -10,4 +10,5 @@ class Product < ApplicationRecord
   validates :band, presence: true
   validates :price, presence: true
   validates :description, presence: true
+  validates :image, presence: true
 end
