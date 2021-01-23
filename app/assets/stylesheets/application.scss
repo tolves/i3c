@@ -27,11 +27,17 @@
 @import "welcome";
 
 #loading {
-    position: absolute;
-    background-color: #000000;
-    opacity: 0.8;
-    padding: 1em;
-    margin-left: 0;
-    margin-right: auto;
-    display: none;
+  position: absolute;
+  background-color: #000000;
+  opacity: 0.8;
+  padding: 1em;
+  margin-left: 0;
+  margin-right: auto;
+  display: none;
+}
+
+.alert-alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 }

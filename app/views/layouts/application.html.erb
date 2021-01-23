@@ -10,13 +10,10 @@
   <script src="https://www.paypal.com/sdk/js?client-id=ASXaqbwl5OUI96LhkLtD1Z5nTBNbryp4x0LX7kLnkkBH8EROvNXHAeQ9MzfWuxO5GiUtyksfi_D6S0z-&currency=EUR"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.</script>
 </head>
 
-<body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<div class="container">
-  <%= content_for?(:content) ? yield(:content) : yield %>
-</div>
+<body class="container">
+<%= render "layouts/flash" %>
+<%= render "layouts/navbar" %>
+<%= content_for?(:content) ? yield(:content) : yield %>
 </body>
 <footer>
   <%= render "layouts/footer" %>

@@ -9,21 +9,16 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
-<%= render "layouts/loading" %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<div class="container">
-  <%= render "layouts/navbar" %>
-  <div class="row">
-    <div class="col col-4">
-      <%= render "admin/menu" %>
-    </div>
-    <div class="col">
-      <%= render "admin/nav" if controller_name != 'admin' %>
-      <%= content_for?(:content) ? yield(:content) : yield %>
-    </div>
+<body class="container">
+<%= render "layouts/flash" %>
+<%= render "layouts/navbar" %>
+<div class="row">
+  <div class="col col-4">
+    <%= render "admin/menu" %>
+  </div>
+  <div class="col">
+    <%= render "admin/nav" if controller_name != 'admin' %>
+    <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
 </div>
 </body>
