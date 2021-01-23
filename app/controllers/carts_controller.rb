@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :create_cart
   before_action :merge_cart, only: :show
+  before_action :sync_price, only: :show
 
   def show
     @cart = current_user.cart
@@ -30,11 +31,18 @@ class CartsController < ApplicationController
 
         if current_user.cart.lists.exists?(product_id: product['id'])
           list = current_user.cart.lists.find_by(product_id: product['id'])
-          next if list.update!(quantity: product['quantity'], price: product['price'])
+          next if list.update!(quantity: product['quantity'], price: list.product.price)
         end
 
         current_user.cart.lists.create!(product_id: product['id'], quantity: product['quantity'], price: product['price'])
+      end
+    end
+  end
 
+  def sync_price
+    ActiveRecord::Base.connected_to(role: :writing) do
+      current_user.cart.lists.each do |l|
+        l.update(price: l.product.price) if l.price != l.product.price
       end
     end
   end

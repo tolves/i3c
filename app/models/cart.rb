@@ -3,6 +3,6 @@ class Cart < ApplicationRecord
   has_many :products, through: :lists
 
   def amount
-    self.lists.sum { |v| v.price }
+    self.lists.sum { |v| v.price * v.quantity }
   end
 end
