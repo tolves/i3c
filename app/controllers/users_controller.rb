@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
+  layout "admin"
 
   def index
     @users = User.all
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find params[:id]
     if @user.update!(params_user)
-      redirect_to @user
+      redirect_to admin_user_path @user
     else render :edit
     end
   end
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_path
+    redirect_to admin_users_path
   end
 
   private

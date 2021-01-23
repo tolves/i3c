@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_admin!
-  layout :admin_or_user
+  layout "admin"
 
   def index
     @products = Product.all
@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new params_product
     @product.save!
-    redirect_to product_path @product
+    redirect_to admin_product_path @product
   end
 
   def show
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     if @product.update(params_product)
-      redirect_to @product
+      redirect_to admin_product_path(@product)
     else render :edit
     end
   end
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
 
-    redirect_to products_path
+    redirect_to admin_products_path
   end
 
   private

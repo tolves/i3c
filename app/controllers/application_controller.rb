@@ -11,10 +11,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def admin_or_user
-    current_admin ? "admin" : "application"
-  end
-
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :forbidden, content_type: 'text/html' }

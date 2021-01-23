@@ -6,17 +6,20 @@ Rails.application.routes.draw do
   }
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resource :admin, controller: :admin #singular recourse
-  resources :products, path: '/admin/products' do
-    resource :inbounds
+
+  #singular recourse
+  resource :admin, controller: :admin do
+    resources :products do
+      resource :inbounds
+    end
+    resources :categories do
+      post 'meta_data', to: 'categories#meta_data'
+      post 'ajax_products', to: 'categories#ajax_products'
+    end
+    resources :users
   end
-  resources :orders, path: '/admin/orders'
-  # resources :users, path: '/admin/users'
-  resources :categories, path: '/admin/categories' do
-    post 'meta_data', to: 'categories#meta_data'
-    post 'ajax_products', to: 'categories#ajax_products'
-  end
-  resource :account, controller: :users do
+
+  resource :account do
     resources :orders
     resource :address, controller: :address
   end

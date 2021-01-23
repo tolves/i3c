@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_admin!, except: :ajax_products
-  layout :admin_or_user
+  layout "admin"
 
   def index
     @categories = Category.all
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new params_category
     @category.save!
-    redirect_to category_path @category
+    redirect_to admin_category_path @category
   end
 
   def show
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if @category.update!(params_category)
-      redirect_to @category
+      redirect_to admin_category_path @category
     else render :edit
     end
   end
@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
 
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
   def meta_data

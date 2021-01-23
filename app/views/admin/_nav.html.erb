@@ -1,7 +1,7 @@
 <%= nav do %>
-  <%= nav_link :list, send(controller_name.to_s + '_path') %>
-  <%= nav_link :new, send('new_' + controller_name.singularize + '_path') %>
-  <%= nav_link :edit, send('edit_' + controller_name.singularize + '_path') unless params[:id].blank? %>
+  <%= nav_link :list, send('admin_' + controller_name.to_s + '_path') %>
+  <%= nav_link :new, send('new_admin_' + controller_name.singularize + '_path') %>
+  <%= nav_link :edit, send('edit_admin_' + controller_name.singularize + '_path') unless params[:id].blank? %>
   <li class="nav-item">
     <a class="nav-link" href="#">Export</a>
   </li>
