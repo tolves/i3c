@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   serialize :meta_data, Hash
   has_rich_text :content
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   validates :band, presence: true
   validates :price, presence: true
   validates :description, presence: true
