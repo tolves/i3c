@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_191629) do
+ActiveRecord::Schema.define(version: 2021_01_23_000553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -121,12 +121,10 @@ ActiveRecord::Schema.define(version: 2021_01_22_191629) do
   create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "address_id"
     t.bigint "user_id"
-    t.integer "products", array: true
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["address_id"], name: "index_orders_on_address_id"
-    t.index ["products"], name: "index_orders_on_products", using: :gin
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
