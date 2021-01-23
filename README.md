@@ -30,3 +30,5 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] Order CRUD, cancel, shipped status
 - [x] divide admin controllers&user controllers
 - [ ] paypal sandbox
+- [ ] Address validate(frontend)
+- [x] amount price calculate

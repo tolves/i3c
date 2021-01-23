@@ -4,7 +4,7 @@ class CartsController < ApplicationController
   before_action :merge_cart, only: :show
 
   def show
-    @cart = current_user.cart.lists
+    @cart = current_user.cart
   end
 
   def destroy
@@ -30,10 +30,10 @@ class CartsController < ApplicationController
 
         if current_user.cart.lists.exists?(product_id: product['id'])
           list = current_user.cart.lists.find_by(product_id: product['id'])
-          next if list.update!(quantity: product['quantity'])
+          next if list.update!(quantity: product['quantity'], price: product['price'])
         end
 
-        current_user.cart.lists.create!(product_id: product['id'], quantity: product['quantity'])
+        current_user.cart.lists.create!(product_id: product['id'], quantity: product['quantity'], price: product['price'])
 
       end
     end

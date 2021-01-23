@@ -3,17 +3,24 @@
     <tr>
       <th>ID</th>
       <th>Title</th>
-      <th>Quantity</th>
+      <th>Qty</th>
+      <th>Price</th>
     </tr>
-    <% @cart.each do |l| %>
+    <% @cart.lists.each do |l| %>
       <tr>
         <td><%= l.product.id %></td>
         <td><%= l.product.title %></td>
         <td><%= l.quantity %></td>
+        <td><%= l.price %></td>
         <td><%= link_to :remove, cart_path(l), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
+    <tr>
+      <td colspan="2">Order Total:</td>
+      <td colspan="2"></td>
+      <td>€<%= @cart.amount %></td>
+    </tr>
   </table>
 </div>
 
-<%= link_to :place_order, new_account_order_path %>
+<%= link_to :checkout, new_account_order_path %>
