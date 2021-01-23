@@ -56,10 +56,27 @@ function select_product(product_id) {
             console.error('AJAX Error: ' + status + error);
         },
         success: function (response) {
-            console.log(response)
+            console.log(response);
             $('div#selected_' + response['category_id']).html(response['title']);
             $('div#quantity_' + response['category_id']).html(response['quantity']);
             $('div#products_' + response['category_id']).empty();
+            show_total();
+        }
+    })
+}
+
+function show_total() {
+    Rails.ajax({
+        type: "POST",
+        url: '/welcome/ajax_total',
+        dataType: 'json',
+        accept: 'json',
+        error: function (xhr, status, error) {
+            console.error('AJAX Error: ' + status + error);
+        },
+        success: function (response) {
+            console.log(response);
+            $('span#total').html(response);
         }
     })
 }
@@ -95,7 +112,7 @@ $(document).ready(function () {
         show_products($(this).attr("value"));
     });
 
-    paypal.Buttons().render('#paypal-button-container');
+    // paypal.Buttons().render('#paypal-button-container');
 
     // paypal.Buttons({
     //     createOrder: function(data, actions) {

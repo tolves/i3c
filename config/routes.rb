@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
   resource :welcome do
     post 'ajax_session', to: 'welcome#ajax_session'
+    post 'ajax_total', to: 'welcome#ajax_session_amount'
   end
   resource :cart
 end

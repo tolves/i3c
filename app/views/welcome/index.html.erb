@@ -32,8 +32,4 @@
   </div>
 </div>
 
-<div class="row fixed-top">
-  <div class="col col-6"></div>
-  <div class="col col-3">Total:</div>
-  <div class="col col-3"><%= button_to :show_in_cart, cart_path, method: :get %></div>
-</div>
+<%= render "welcome/total" %>

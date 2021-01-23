@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
 
   def index
     @categories = Category.all
+    @amount = session_amount
   end
 
   def ajax_session
@@ -15,10 +16,23 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def ajax_session_amount
+    amount = session_amount
+    respond_to do |format|
+      format.json { render json: session_amount.to_json }
+    end
+  end
+
   private
 
   def initialize_cart
     @cart = session[:cart] ||= {}
+  end
+
+  def session_amount
+    session[:cart].sum do |index, product|
+      product['price'] * product['quantity']
+    end
   end
 
 end
