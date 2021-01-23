@@ -22,12 +22,10 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] filter for tables
 - [ ] recommendation in index
 - [ ] photo for product
-- [ ] filter for tables
-- [ ] Product inventory inbound
 - [ ] Product Warehouse operation (fast inbound)
 - [ ] Product inventory - 1 when ordered (outbound)
-- [ ] welcome controller, ajax select components
+- [x] welcome controller, ajax select components
 - [ ] Account profile
 - [ ] Orders statistics
 - [ ] Order CRUD, cancel, shipped status
-- [ ] divide admin controllers&user controllers
+- [x] divide admin controllers&user controllers
