@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
   devise_for :users, controllers: { sessions: 'users/sessions'
   }
-  devise_for :admins, controllers: { sessions: 'admins/sessions' }
+  devise_for :admin, controllers: { sessions: 'admin/sessions' }
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   #singular recourse
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resource :account do
+  resource :account, controller: :account do
     resources :orders
     resource :address, controller: :address
   end
