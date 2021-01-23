@@ -1,1 +1,8 @@
-index order
+<% @orders.each do |o| %>
+  <%= o.user.email %><br/>
+  <%= o.address.inspect %><br/>
+  <%= o.status %><br/>
+  <%= o.created_at %><br/>
+  <%= o.updated_at %><br/>
+  <%= o.products.inspect %><br/>
+<% end %>
