@@ -18,6 +18,25 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
+  def qty_change
+    puts params
+
+    list = current_user.cart.lists.find_by_product_id(params['product_id'])
+
+    case params['method']
+    when 'minus'
+      if list.quantity > 1
+        list.quantity -= 1
+      end
+    when 'plus'
+      list.quantity += 1
+    end
+    list.save!
+    respond_to do |format|
+      format.json { render json: [list.quantity, list.quantity * list.price, current_user.cart.amount].to_json }
+    end
+  end
+
   private
 
   def create_cart
