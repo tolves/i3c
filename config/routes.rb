@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   end
   resource :welcome do
     post 'selected', to: 'welcome#selected'
+    post 'qty_change', to: 'welcome#qty_change'
   end
-  resource :cart
+  resource :cart do
+    post 'qty_change', to: 'carts#qty_change'
+  end
 end

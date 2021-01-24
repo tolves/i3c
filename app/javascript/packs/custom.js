@@ -18,37 +18,11 @@ function meta_data(id) {
     })
 }
 
-function show_products(id) {
-    console.log("category clicked");
-    // console.log(data)
+function change_qty(qty, method) {
+    var data = {product_id: qty.attr('value'), method: method}
     Rails.ajax({
         type: "POST",
-        url: "/admin/categories/" + id + "/ajax_products",
-        // data: new URLSearchParams(data).toString(),
-        dataType: 'json',
-        accept: 'json',
-        error: function (xhr, status, error) {
-            console.error('AJAX Error: ' + status + error);
-        },
-        success: function (response) {
-            console.log(response);
-            $('div#products_' + id).empty();
-            for (var i in response) {
-                $('div#products_' + id).append("<div id='product' value=" + response[i]['id'] + ">" + response[i]['title'] + "</div>");
-            }
-            $('div#product').click(function () {
-                select_product($(this).attr("value"));
-            })
-        }
-    })
-}
-
-function select_product(product_id) {
-    console.log(product_id);
-    data = {id: product_id};
-    Rails.ajax({
-        type: "POST",
-        url: '/welcome/ajax_session',
+        url: '/welcome/qty_change',
         data: new URLSearchParams(data).toString(),
         dataType: 'json',
         accept: 'json',
@@ -57,55 +31,63 @@ function select_product(product_id) {
         },
         success: function (response) {
             console.log(response);
-            $('div#selected_' + response['category_id']).html(response['title']);
-            $('div#quantity_' + response['category_id']).html(response['quantity']);
-            $('div#products_' + response['category_id']).empty();
-            show_total();
+            qty.html(response[0]);
+            $('span#total').html(response[1])
         }
     })
 }
 
-function show_total() {
+function list_qty(qty, method) {
+    var data = {product_id: qty.attr('value'), method: method}
     Rails.ajax({
         type: "POST",
-        url: '/welcome/ajax_total',
+        url: '/cart/qty_change',
+        data: new URLSearchParams(data).toString(),
         dataType: 'json',
         accept: 'json',
         error: function (xhr, status, error) {
             console.error('AJAX Error: ' + status + error);
         },
         success: function (response) {
-            $('span#total').html(response);
+            console.log(response);
+            qty.html(response[0]);
+            qty.parent().parent().next().html(response[1]);
+            $('span#total').html(response[2]);
         }
     })
 }
 
-$(document).ready(function () {
-    // I dont understand why funtion showFrom isn't defined in js.
-    // but window.showFrom worked, but it worked
-    // window.showForm = function (id, width, title) {
-    //     var el = $('#' + id).first();
-    //     if (el.length === 0 || el.is(':visible')) {
-    //         return;
-    //     }
-    //     if (!title) title = el.find('h3.title').text();
-    //     // moves existing modals behind the transparent background
-    //     $(".modal").css('zIndex', 99);
-    //     el.dialog({
-    //         width: width,
-    //         modal: true,
-    //         resizable: false,
-    //         dialogClass: 'modal',
-    //         title: title
-    //     }).on('dialogclose', function () {
-    //         $(".modal").css('zIndex', 101);
-    //     });
-    //     el.find("input[type=text], input[type=submit]").first().focus();
-    // }
 
-    // $('select#product_category_id').change(function () {
-    //     meta_data($(this).val());
-    // });
+$(document).ready(function () {
+
+    $('div#minus').click(function () {
+        var qty = $(this).next().children();
+        if (qty.text() > 1) {
+            change_qty(qty, 'minus')
+        }
+    });
+
+    $('div#plus').click(function () {
+        var qty = $(this).prev().children();
+        change_qty(qty, 'plus');
+    });
+
+    $('div#list_minus').click(function () {
+        var qty = $(this).next().children();
+        if (qty.text() > 1) {
+            list_qty(qty, 'minus')
+        }
+    })
+
+    $('div#list_plus').click(function () {
+        var qty = $(this).prev().children();
+        list_qty(qty, 'plus');
+    });
+
+
+    $('select#product_category_id').change(function () {
+        meta_data($(this).val());
+    });
     //
     // $('div.selected_product').click(function () {
     //     show_products($(this).attr("value"));
