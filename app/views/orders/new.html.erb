@@ -1,23 +1,19 @@
 <div class="row">
-  <div class="col col-3">
+  <div class="col col-4">
     Choose a delivery address
   </div>
-  <div class="col col-auto" id="address_show">
+  <div class="col" id="address_show">
     <%= render "address/show" %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col col-3">payment method</div>
-  <div class="col col-auto"></div>
-</div>
-
-<div class="row">
-  <div class="col col-3">Review items</div>
-  <div class="col col-auto">
+  <!--  TODO: Use Table to show products-->
+  <div class="col col-4">Review items</div>
+  <div class="col">
     <% current_user.cart.lists.each do |l| %>
       <div class="row">
-        <div class="col col-4">PIC HERE</div>
+        <div class="col col-4"><%= image_tag(l.product.image, class: "icons") %></div>
         <div class="col col-4"><%= l.product.title %></div>
         <div class="col">€<%= l.price %></div>
       </div>

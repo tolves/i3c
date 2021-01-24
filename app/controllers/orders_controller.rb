@@ -26,10 +26,12 @@ class OrdersController < ApplicationController
     if @order.save!
       current_user.cart.lists.each do |l|
         @order.lists.create!(product_id: l.product.id, quantity: l.quantity, price: l.price)
+        session[:cart].delete_if do |key, value|
+          value['id'] == l.product.id
+        end
         l.destroy!
       end
       @order.create_address! address
-      session[:cart]
       redirect_to account_orders_path
     end
     # request = PayPalCheckoutSdk::Orders::OrdersCreateRequest::new
