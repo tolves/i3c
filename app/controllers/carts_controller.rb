@@ -1,8 +1,9 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
-  before_action :create_cart
+  before_action :create_cart, only: :show
   before_action :merge_cart, only: :show
   before_action :sync_price, only: :show
+  after_action :sync_cart, only: :show
 
   def show
     @cart = current_user.cart
@@ -58,6 +59,20 @@ class CartsController < ApplicationController
     end
   end
 
+  def sync_cart
+    # while session[:cart][category] has product, sync the qty
+    # else append list.product & list.quantity to session[:cart][category]
+    current_user.cart.lists.each do |l|
+      if session[:cart][l.product.category.title]
+        if session[:cart][l.product.category.title]['id'] == l.product.id
+          session[:cart][l.product.category.title]['quantity'] = l.quantity
+        end
+      else session[:cart][l.product.category.title] = l.product.attributes
+      session[:cart][l.product.category.title]['quantity'] = l.quantity
+      end
+    end
+  end
+
   def sync_price
     ActiveRecord::Base.connected_to(role: :writing) do
       current_user.cart.lists.each do |l|
@@ -65,4 +80,5 @@ class CartsController < ApplicationController
       end
     end
   end
+
 end
