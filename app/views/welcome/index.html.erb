@@ -7,8 +7,9 @@
       <div class="row position-relative">
         <div id='category' value=<%= c.id %> class="col-2"><span class="align-middle"><%= c.title.humanize %></span>
         </div>
+
         <div id='icon_<%= c.id %>' class="col-2">
-          <%= render :partial => "welcome/image", locals: { img: "icons/#{c.title}.svg" } %>
+          <%= render :partial => "welcome/image", locals: { img: (session[:cart][c.title].blank? ? "icons/#{c.title}.svg" : find_product(session[:cart][c.title]['id']).image) } %>
         </div>
         <div class="row col position-relative">
           <div class="col position-absolute" id="selected_<%= c.id %>">
