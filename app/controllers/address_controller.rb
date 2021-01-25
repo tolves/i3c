@@ -1,5 +1,6 @@
 class AddressController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
   def create
     @address = current_user.create_address! params_address
   end

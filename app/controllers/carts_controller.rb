@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :create_cart, only: :show
   before_action :merge_cart, only: :show
   before_action :sync_price, only: :show

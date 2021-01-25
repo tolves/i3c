@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   # before_action :authenticate_user!
+  skip_authorization_check
   before_action :initialize_cart
 
   def index

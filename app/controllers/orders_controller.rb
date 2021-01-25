@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource # param_method: :params_order
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def new
@@ -32,7 +33,8 @@ class OrdersController < ApplicationController
         l.destroy!
       end
       @order.create_address! address
-      redirect_to account_orders_path
+      redirect_to new_account_order_payment_path(@order)
+    else render :new
     end
     # request = PayPalCheckoutSdk::Orders::OrdersCreateRequest::new
     # request.request_body({
@@ -61,9 +63,22 @@ class OrdersController < ApplicationController
     # end
   end
 
+  def show
+    @order = Order.find(params[:id])
+    puts can? :read, @order
+  end
+
   private
 
   def params_order
-    params[:order].permit(:address, :user, :status)
+    params[:order].permit()
+  end
+
+  def check_buyer_identity
+    @order = Order.find_by_id(params[:id])
+    if current_user.id != @order.buyer_id
+      flash[:danger] = "Unathorized access"
+      redirect_to items_path
+    end
   end
 end

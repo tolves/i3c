@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_admin!, except: [:ajax_products, :products]
+  skip_authorization_check :only => :products
+  before_action :authenticate_admin!, except: :products
   layout "admin"
 
   def index
@@ -44,13 +45,6 @@ class CategoriesController < ApplicationController
     @category = Category.find params[:category_id]
     respond_to do |format|
       format.json { render json: @category.meta_data.to_json }
-    end
-  end
-
-  def ajax_products
-    @category = Category.find(params[:category_id])
-    respond_to do |format|
-      format.json { render json: @category.products.to_json }
     end
   end
 
