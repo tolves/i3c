@@ -36,31 +36,6 @@ class OrdersController < ApplicationController
       redirect_to new_account_order_payment_path(@order)
     else render :new
     end
-    # request = PayPalCheckoutSdk::Orders::OrdersCreateRequest::new
-    # request.request_body({
-    #                        intent: "CAPTURE",
-    #                        purchase_units: [
-    #                          {
-    #                            amount: {
-    #                              currency_code: "USD",
-    #                              value: "100.00"
-    #                            }
-    #                          }
-    #                        ]
-    #                      })
-    #
-    # begin
-    #   # Call API with your client and get a response for your call
-    #   response = PaypalClient.client.execute(request)
-    #
-    #   # If call returns body in response, you can get the deserialized version from the result attribute of the response
-    #   order = response.result
-    #   puts order
-    # rescue PayPalHttp::HttpError => ioe
-    #   # Something went wrong server-side
-    #   puts ioe.status_code
-    #   puts ioe.headers["debug_id"]
-    # end
   end
 
   def show
@@ -72,13 +47,5 @@ class OrdersController < ApplicationController
 
   def params_order
     params[:order].permit()
-  end
-
-  def check_buyer_identity
-    @order = Order.find_by_id(params[:id])
-    if current_user.id != @order.buyer_id
-      flash[:danger] = "Unathorized access"
-      redirect_to items_path
-    end
   end
 end
