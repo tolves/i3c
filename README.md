@@ -35,3 +35,4 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] Order cancel, shipped status update
 - [x] paypal sandbox
 - [ ] email async
+- [ ] update order information to paypal by api
