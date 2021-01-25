@@ -23,16 +23,10 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @order.status = :unpaid
     @order.amount = current_user.cart.amount
-    address = { full_name: current_user.address.full_name, phone: current_user.address.phone, postcode: current_user.address.postcode, line_1: current_user.address.line_1, line_2: current_user.address.line_2, line_3: current_user.address.line_3, town: current_user.address.town, county: current_user.address.county, instructions: current_user.address.instructions, security_code: current_user.address.security_code }
+
     if @order.save!
-      current_user.cart.lists.each do |l|
-        @order.lists.create!(product_id: l.product.id, quantity: l.quantity, price: l.price)
-        session[:cart].delete_if do |key, value|
-          value['id'] == l.product.id
-        end
-        l.destroy!
-      end
-      @order.create_address! address
+      save_cart_lists @order
+      @order.create_address! user_address
       redirect_to new_account_order_payment_path(@order)
     else render :new
     end
@@ -47,5 +41,19 @@ class OrdersController < ApplicationController
 
   def params_order
     params[:order].permit()
+  end
+
+  def user_address
+    { full_name: current_user.address.full_name, phone: current_user.address.phone, postcode: current_user.address.postcode, line_1: current_user.address.line_1, line_2: current_user.address.line_2, town: current_user.address.town, county: current_user.address.county, instructions: current_user.address.instructions, security_code: current_user.address.security_code }
+  end
+
+  def save_cart_lists(order)
+    current_user.cart.lists.each do |l|
+      order.lists.create!(product_id: l.product.id, quantity: l.quantity, price: l.price)
+      session[:cart].delete_if do |key, value|
+        value['id'] == l.product.id
+      end
+      l.destroy!
+    end
   end
 end
