@@ -60,32 +60,31 @@ function list_qty(qty, method) {
 
 $(document).ready(function () {
 
-    $('div#minus').click(function () {
+    $('body').on('click', 'div#minus', function () {
         var qty = $(this).next().children();
         if (qty.text() > 1) {
             change_qty(qty, 'minus')
         }
     });
 
-    $('div#plus').click(function () {
+    $('body').on('click', 'div#plus', function () {
         var qty = $(this).prev().children();
         change_qty(qty, 'plus');
     });
 
-    $('div#list_minus').click(function () {
+    $('body').on('click', 'div#list_minus', function () {
         var qty = $(this).next().children();
         if (qty.text() > 1) {
             list_qty(qty, 'minus')
         }
-    })
+    });
 
-    $('div#list_plus').click(function () {
+    $('body').on('click', 'div#list_plus', function () {
         var qty = $(this).prev().children();
         list_qty(qty, 'plus');
     });
 
-
-    $('select#product_category_id').change(function () {
+    $('select#product_category_id').on('change', function () {
         meta_data($(this).val());
     });
     //
