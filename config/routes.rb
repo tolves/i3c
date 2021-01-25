@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   end
 
   resource :account, controller: :account do
-    resources :orders
+    resources :orders do
+      resource :payment, controller: :payment
+    end
     resource :address, controller: :address
   end
   resource :welcome do
