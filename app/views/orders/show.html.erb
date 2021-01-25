@@ -1,0 +1,4 @@
+<%= @order.id %> <br/>
+<%= @order.amount %> <br/>
+<%= @order.status %> <br/>
+<%= link_to :payment, new_account_order_payment_path(@order) %>
