@@ -33,5 +33,5 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] Account profile
 - [ ] Orders statistics
 - [ ] Order cancel, shipped status update
-- [ ] paypal sandbox
+- [x] paypal sandbox
 - [ ] email async

@@ -1,5 +1,5 @@
 <script
-  src="https://www.paypal.com/sdk/js?client-id=ASv3RRakkgFHKgtF7wj03AIiXz6BFoDOOPR9r1eDQYxQDm9q_QeYf3ix18rof_0k04j5RyjwVsAKXuav&currency=EUR">
+  src="https://www.paypal.com/sdk/js?client-id=ASXaqbwl5OUI96LhkLtD1Z5nTBNbryp4x0LX7kLnkkBH8EROvNXHAeQ9MzfWuxO5GiUtyksfi_D6S0z-&currency=EUR">
 </script>
 
 <label class="amount">
@@ -14,7 +14,7 @@
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        currency_code: 'EUR',
+                        currency: 'EUR',
                         value: <%=@order.amount %>
                     },
                     shipping: {
@@ -31,10 +31,9 @@
                 }]
             });
         },
+
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
-                console.log(data);
-                console.log(details);
                 var paypal_data = {data: JSON.stringify(data), details: JSON.stringify(details)};
                 Rails.ajax({
                     type: "POST",
@@ -51,6 +50,7 @@
                 });
             });
         },
+
         onError: (err) => {
             console.error('error from the onError callback', err);
         }
