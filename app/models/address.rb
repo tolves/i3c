@@ -7,4 +7,5 @@ class Address < ApplicationRecord
   validates :line_1, presence: true
   validates :town, presence: true
   validates :county, presence: true
+
 end

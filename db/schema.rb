@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_183451) do
+ActiveRecord::Schema.define(version: 2021_01_25_215159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2021_01_23_183451) do
     t.string "postcode"
     t.string "line_1"
     t.string "line_2"
-    t.string "line_3"
     t.string "town"
     t.string "county"
     t.text "instructions"
@@ -128,6 +127,16 @@ ActiveRecord::Schema.define(version: 2021_01_23_183451) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "amount", default: 0
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "paypals", force: :cascade do |t|
+    t.bigint "order_id"
+    t.string "p_orderId"
+    t.text "p_data"
+    t.text "p_details"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_paypals_on_order_id"
   end
 
   create_table "products", force: :cascade do |t|
