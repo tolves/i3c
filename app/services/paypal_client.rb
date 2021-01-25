@@ -4,8 +4,8 @@ module PaypalClient
   class << self
 
     def environment
-      client_id = 'ASXaqbwl5OUI96LhkLtD1Z5nTBNbryp4x0LX7kLnkkBH8EROvNXHAeQ9MzfWuxO5GiUtyksfi_D6S0z-' #Rails.application.credentials.dev[:paypal] #ENV.fetch("PAYPAL_CLIENT_ID")
-      client_secret = 'EIm5IFFReNqiUk5EGelFZte3nUe0sn60ozdwg_Vx9BEBKBJC6PS6jtuYiN4Y8sEjYcxu4kPDlT5QPRLE' #Rails.application.credentials.dev[:paypal_secret] #ENV.fetch("PAYPAL_CLIENT_SECRET")
+      client_id = Rails.application.credentials.dev[:paypal] #ENV.fetch("PAYPAL_CLIENT_ID")
+      client_secret = Rails.application.credentials.dev[:paypal_secret] #ENV.fetch("PAYPAL_CLIENT_SECRET")
 
       PayPal::SandboxEnvironment.new(client_id, client_secret)
     end
