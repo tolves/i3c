@@ -2,8 +2,7 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'welcome#index'
-  devise_for :users, controllers: { sessions: 'users/sessions'
-  }
+  devise_for :users, module: "users"
   devise_for :admin, controllers: { sessions: 'admin/sessions' }
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
