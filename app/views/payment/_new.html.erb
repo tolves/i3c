@@ -1,0 +1,49 @@
+<script>
+    // backup for javascript codes
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        currency: 'EUR',
+                        value: <%=@order.amount %>
+                    },
+                    shipping: {
+                        method: 'An Post',
+                        address: {
+                            address_line_1: "<%=@order.address.line_1 %>",
+                            address_line_2: "<%=@order.address.line_2 %>",
+                            admin_area_2: "<%=@order.address.town %>",
+                            admin_area_1: "<%=@order.address.county %>",
+                            postal_code: "<%=@order.address.postcode %>",
+                            country_code: 'IE'
+                        }
+                    }
+                }]
+            });
+        },
+
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                var paypal_data = {data: JSON.stringify(data), details: JSON.stringify(details)};
+                Rails.ajax({
+                    type: "POST",
+                    url: "<%=account_order_payment_path(@order)%>",
+                    data: new URLSearchParams(paypal_data).toString(),
+                    dataType: 'json',
+                    accept: 'json',
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error: ' + status + error);
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
+            });
+        },
+
+        onError: (err) => {
+            console.error('error from the onError callback', err);
+        }
+    }).render('#paypal-button-container');
+</script>
