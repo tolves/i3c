@@ -21,7 +21,9 @@ Rails.application.routes.draw do
 
   resource :account, controller: :account do
     resources :orders do
-      resource :payment, controller: :payment
+      resource :payment, controller: :payment, only: [:new, :create] do
+        post 'create_transaction', to: 'payment#create_transaction'
+      end
     end
     resource :address, controller: :address
   end
