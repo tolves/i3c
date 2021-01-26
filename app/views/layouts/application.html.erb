@@ -10,6 +10,7 @@
 </head>
 
 <body class="container">
+<%= render "layouts/loading" %>
 <%= render "layouts/flash" %>
 <%= render "layouts/navbar" %>
 <%= content_for?(:content) ? yield(:content) : yield %>
