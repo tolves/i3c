@@ -9,20 +9,20 @@ Rails.application.routes.draw do
   #singular recourse
   resource :admin, controller: :admin do
     resources :categories do
-      post 'meta_data', to: 'categories#meta_data'
-      post 'products', to: 'categories#products'
+      post 'meta_data', on: :member
+      post 'products', on: :member
     end
     resources :users
   end
 
   namespace :admin do
     resources :orders do
-      get 'shipment', to: 'orders#shipment'
-      post 'shipment', to: 'orders#shipment'
+      get 'shipment', on: :member
+      post 'shipment', on: :member
     end
     resources :products do
-      get 'inbound', to: 'products#inbound'
-      post 'inbound', to: 'products#inbound'
+      get 'inbound', on: :member
+      post 'inbound', on: :member
     end
   end
 
@@ -37,10 +37,10 @@ Rails.application.routes.draw do
     resource :address, controller: :address
   end
   resource :welcome do
-    post 'selected', to: 'welcome#selected'
-    post 'qty_change', to: 'welcome#qty_change'
+    post 'selected', on: :member
+    post 'qty_change', on: :member
   end
   resource :cart do
-    post 'qty_change', to: 'carts#qty_change'
+    post 'qty_change', on: :member
   end
 end
