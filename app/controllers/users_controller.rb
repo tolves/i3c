@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_admin!
+  load_and_authorize_resource # param_method: :params_category
   layout "admin"
 
   def index
-    @users = User.all
   end
 
   def show
-    @user = current_user || User.find(params[:id])
   end
 
   def new
@@ -21,7 +20,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find params[:id]
     if @user.update!(params_user)
       redirect_to admin_user_path @user
     else render :edit
@@ -29,11 +27,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find params[:id]
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
 
     redirect_to admin_users_path
