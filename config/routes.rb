@@ -8,15 +8,21 @@ Rails.application.routes.draw do
 
   #singular recourse
   resource :admin, controller: :admin do
-    resources :products do
-      resource :inbounds
-    end
     resources :categories do
       post 'meta_data', to: 'categories#meta_data'
       post 'products', to: 'categories#products'
     end
     resources :users
   end
+
+  namespace :admin do
+    resources :orders
+    resources :products do
+      resource :inbounds
+    end
+  end
+
+  resources :products, only: :show
 
   resource :account, controller: :account do
     resources :orders do
