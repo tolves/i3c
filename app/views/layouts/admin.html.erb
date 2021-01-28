@@ -17,8 +17,14 @@
     <%= render "admin/menu" %>
   </div>
   <div class="col">
-    <%= render "admin/nav" if controller_name != 'admin' %>
-    <%= content_for?(:content) ? yield(:content) : yield %>
+    <div class="row">
+      <%= render "admin/nav" %>
+    </div>
+    <div class="row">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </div>
+
+
   </div>
 </div>
 </body>
