@@ -26,7 +26,7 @@
 
   </div>
   <div class="col col-2">
-    <%= link_to :change, admin_category_products_path(category.id), remote: true, method: :post %>
-    <%= link_to :remove, admin_category_products_path(category.id), remote: true, method: :post %>
+    <%= link_to :change, products_admin_category_path(category.id), remote: true, method: :post %>
+    <%#= link_to :remove, products_admin_category_path(category.id), remote: true, method: :post %>
   </div>
 </div>

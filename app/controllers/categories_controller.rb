@@ -35,14 +35,12 @@ class CategoriesController < ApplicationController
   end
 
   def meta_data
-    @category = Category.find params[:category_id]
     respond_to do |format|
       format.json { render json: @category.meta_data.to_json }
     end
   end
 
   def products
-    @category = Category.find(params[:category_id])
     @products = @category.products
   end
 

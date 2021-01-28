@@ -15,7 +15,7 @@
           <div class="col position-absolute" id="selected_<%= c.id %>">
             <% if session[:cart][c.title].blank? %>
               <div class="col">
-                <%= link_to :Click_me_to_choose_one, admin_category_products_path(c.id), remote: true, method: :post %>
+                <%= link_to :Click_me_to_choose_one, products_admin_category_path(c.id), remote: true, method: :post %>
               </div>
               <div id="quantity_<%= c.id %>" class="col"></div>
             <% else %>
