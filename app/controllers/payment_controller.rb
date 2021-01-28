@@ -46,13 +46,6 @@ class PaymentController < ApplicationController
   private
 
   def body_build
-    { intent: 'CAPTURE', purchase_units: [{ description: 'PC Components', custom_id: @order.id, amount: { currency_code: 'EUR', value: @order.amount, breakdown: { item_total: { currency_code: 'EUR', value: @order.amount }, shipping: { currency_code: 'EUR', value: '0.00' }
-    }
-    }, items: @order.lists.map { |l| { name: l.product.title, unit_amount: { currency_code: 'EUR', value: l.price }, quantity: l.quantity } }, shipping: { method: 'An Post', address: { name: { full_name: @order.address.full_name
-    }, address_line_1: @order.address.line_1, address_line_2: @order.address.line_2, admin_area_2: @order.address.town, admin_area_1: @order.address.county, postal_code: @order.address.postcode, country_code: 'IE'
-    }
-    }
-                                          }]
-    }
+    { intent: 'CAPTURE', purchase_units: [{ description: 'PC Components', custom_id: @order.id, amount: { currency_code: 'EUR', value: @order.amount, breakdown: { item_total: { currency_code: 'EUR', value: @order.amount }, shipping: { currency_code: 'EUR', value: '0.00' } } }, items: @order.lists.map { |l| { name: l.product.title, unit_amount: { currency_code: 'EUR', value: l.price }, quantity: l.quantity } }, shipping: { method: 'An Post', address: { name: { full_name: @order.address.full_name }, address_line_1: @order.address.line_1, address_line_2: @order.address.line_2, admin_area_2: @order.address.town, admin_area_1: @order.address.county, postal_code: @order.address.postcode, country_code: 'IE' } } }] }
   end
 end
