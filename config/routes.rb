@@ -17,12 +17,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :orders do
-      get 'shipment', on: :member
-      post 'shipment', on: :member
+      match 'shipment', on: :member, via: [:get, :post]
     end
     resources :products do
-      get 'inbound', on: :member
-      post 'inbound', on: :member
+      match 'inbound', on: :member, via: [:get, :post]
     end
   end
 
@@ -31,14 +29,14 @@ Rails.application.routes.draw do
   resource :account, controller: :account do
     resources :orders do
       resource :payment, controller: :payment, only: [:new, :create] do
-        post 'create_transaction', to: 'payment#create_transaction'
+        post 'create_transaction', on: :member
       end
     end
     resource :address, controller: :address
   end
-  resource :welcome do
-    post 'selected', on: :member
-    post 'qty_change', on: :member
+  resource :welcome, controller: :welcome do
+    post 'selected', to: 'welcome#selected'
+    post 'qty_change', to: 'welcome#qty_change'
   end
   resource :cart do
     post 'qty_change', on: :member
