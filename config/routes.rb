@@ -17,8 +17,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :orders do
-      # get 'ship', to: 'orders#ship'
-      # post 'ship', to: 'orders#ship'
+      get 'shipment', to: 'orders#shipment'
+      post 'shipment', to: 'orders#shipment'
     end
     resources :products do
       get 'inbound', to: 'products#inbound'
