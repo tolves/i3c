@@ -5,7 +5,7 @@ class Ability
 
   def initialize(user)
     # Define abilities for the passed in user here. For example:
-
+    can :read, Product
     return unless user.present?
     # additional permissions for logged in users (they can read their own posts)
     can :manage, User, id: user.id
