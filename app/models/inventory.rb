@@ -1,6 +1,6 @@
 class Inventory < ApplicationRecord
   belongs_to :product, touch: true
-  validates :quantity, presence: true, numericality: { greater_than: 0 }
+  validates :quantity, presence: true, numericality: { greater_than: -1 }
   validates :cost, presence: true
   scope :in_stock, -> { where('quantity > ?', 0) }
 
