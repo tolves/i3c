@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_26_204908) do
+ActiveRecord::Schema.define(version: 2021_01_29_011703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -98,14 +98,14 @@ ActiveRecord::Schema.define(version: 2021_01_26_204908) do
     t.boolean "countable", default: false
   end
 
-  create_table "inbounds", force: :cascade do |t|
+  create_table "inventories", force: :cascade do |t|
     t.bigint "product_id"
     t.integer "quantity", default: 0
     t.text "note"
     t.integer "cost", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_inbounds_on_product_id"
+    t.index ["product_id"], name: "index_inventories_on_product_id"
   end
 
   create_table "lists", force: :cascade do |t|
