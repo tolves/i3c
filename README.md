@@ -28,7 +28,7 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] Accessories
 - [ ] filter for tables
 - [ ] recommendation in index
-- [ ] Product Warehouse operation (fast inbound)
+- [x] Product Warehouse operation (fast inbound)
 - [ ] Product inventory - 1 when ordered (outbound)
 - [ ] Account profile
 - [ ] Orders statistics
