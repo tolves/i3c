@@ -62,6 +62,7 @@ $(document).ready(function () {
 
     $('body').on('click', 'div#minus', function () {
         var qty = $(this).next().children();
+        console.log('minus was clicked');
         if (qty.text() > 1) {
             change_qty(qty, 'minus')
         }
@@ -69,6 +70,7 @@ $(document).ready(function () {
 
     $('body').on('click', 'div#plus', function () {
         var qty = $(this).prev().children();
+        console.log('plus was clicked');
         change_qty(qty, 'plus');
     });
 
