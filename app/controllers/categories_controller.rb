@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
   end
 
   def products
-    @products = @category.products
+    @products = @category.products.in_stock
   end
 
   private

@@ -11,6 +11,7 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :description, presence: true
   validates :image, presence: true
+  scope :in_stock, -> { joins(:inbound).merge(Inbound.in_stock) }
 
   def in_stock?
     return false if !self.inbound
