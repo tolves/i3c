@@ -29,10 +29,11 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] filter for tables
 - [ ] recommendation in index
 - [x] Product Warehouse operation (fast inbound)
-- [ ] Product inventory - 1 when ordered (outbound)
+- [x] Product inventory - 1 when ordered (outbound)
 - [ ] Account profile
 - [ ] Orders statistics
 - [ ] Order cancel, shipped status update
 - [x] paypal sandbox
 - [ ] email async
 - [ ] update order information to paypal by api
+- [x] replace inbound with inventory

@@ -50,6 +50,7 @@ class OrdersController < ApplicationController
   def save_cart_lists(order)
     current_user.cart.lists.each do |l|
       order.lists.create!(product_id: l.product.id, quantity: l.quantity, price: l.price)
+      l.product.inventory.outbound l.quantity
       session[:cart].delete_if do |key, value|
         value['id'] == l.product.id
       end
