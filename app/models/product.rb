@@ -11,4 +11,10 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :description, presence: true
   validates :image, presence: true
+
+  def in_stock?
+    return false if !self.inbound
+    return false if self.inbound == 0
+    true
+  end
 end
