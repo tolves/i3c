@@ -1,1 +1,13 @@
-show account
+<div>
+  <%= current_user.inspect %>
+  <div>
+    <%= link_to :edit_password, edit_user_registration_path %>
+  </div>
+</div>
+
+<div>
+  Address:
+  <div class="col" id="address">
+    <%= render "address/show" %>
+  </div>
+</div>
