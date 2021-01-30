@@ -30,7 +30,7 @@ This is a web application that provides customisation services for gaming PC.
 - [ ] recommendation in index
 - [x] Product Warehouse operation (fast inbound)
 - [x] Product inventory - 1 when ordered (outbound)
-- [ ] Account profile
+- [x] Account profile
 - [ ] Orders statistics
 - [ ] Order cancel, shipped status update
 - [x] paypal sandbox
