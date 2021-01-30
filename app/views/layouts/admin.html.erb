@@ -13,7 +13,7 @@
 <%= render "layouts/flash" %>
 <%= render "layouts/navbar" %>
 <div class="row">
-  <div class="col col-4">
+  <div class="col col-2">
     <%= render "admin/menu" %>
   </div>
   <div class="col">
@@ -23,8 +23,6 @@
     <div class="row">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
-
-
   </div>
 </div>
 </body>
