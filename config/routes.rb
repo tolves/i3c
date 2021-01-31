@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :orders do
-      match 'shipment', on: :member, via: [:get, :post]
+      match 'shipment', on: :member, via: [:get, :patch]
     end
     resources :products do
       match 'inbound', on: :member, via: [:get, :post]

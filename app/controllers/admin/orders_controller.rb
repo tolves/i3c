@@ -4,10 +4,24 @@ class Admin::OrdersController < ApplicationController
   layout "admin"
 
   def index
+    @orders = @orders.order(updated_at: :desc)
+  end
+
+  def show
 
   end
 
   def shipment
-
+    if params[:order]
+      @order.update! params_shipment
+      redirect_to admin_orders_path
+    end
   end
+
+  private
+
+  def params_shipment
+    params[:order].permit(:courier, :tracking)
+  end
+
 end

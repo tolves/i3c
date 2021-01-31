@@ -1,0 +1,16 @@
+shipment
+<%= @order.inspect %>
+
+<%= form_for @order, url: { action: :shipment } do |f| %>
+  <div>
+    <div><%= f.label :courier %></div>
+    <div><%= f.select :courier, Couriers.all, required: true %><span class="text-danger">*</span></div>
+  </div>
+  <div>
+    <div><%= f.label :tracking_number %></div>
+    <div><%= f.text_field :tracking, required: true %><span class="text-danger">*</span></div>
+  </div>
+  <div>
+    <div><%= f.submit %></div>
+  </div>
+<% end %>
