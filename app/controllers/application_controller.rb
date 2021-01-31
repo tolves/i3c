@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
 
   def user_for_paper_trail
     if user_signed_in?
-      return current_user
+      return current_user.email
     end
 
     if admin_signed_in?
-      current_admin.id
+      current_admin.email
     end
   end
 
