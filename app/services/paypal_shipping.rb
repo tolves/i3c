@@ -4,16 +4,15 @@ module PaypalShipping
   class OrderGetShipping
     attr_accessor :path, :body, :headers, :verb
 
-    def initialize(order_id)
+    def initialize(transaction_id, tracking_number)
       @headers = {}
       @body = nil
       @verb = "GET"
-      @path = "/v2/checkout/orders/{order_id}?"
-
-      @path = @path.gsub("{order_id}", CGI::escape(order_id.to_s))
+      @path = "/v1/shipping/trackers/{id}"
+      # The ID of the tracker in the transaction_id-tracking_number format.
+      @path = @path.gsub("{id}", CGI::escape("#{transaction_id}-#{tracking_number}"))
       @headers["Content-Type"] = "application/json"
     end
-
   end
 
   class OrderUpdateShipping
@@ -24,7 +23,6 @@ module PaypalShipping
       @body = nil
       @verb = "POST"
       @path = "/v1/shipping/trackers-batch"
-      # @path = @path.gsub("{id}", CGI::escape("#{transaction_id}-#{tracking_number}".to_s))
       @headers["Content-Type"] = "application/json"
     end
 

@@ -1,5 +1,7 @@
 <%= @order.inspect %>
 <hr>
+<%= @response.inspect %>
+<hr>
 <%= render_async paypal_admin_order_path(@order) %>
 
 <%= content_for :render_async %>

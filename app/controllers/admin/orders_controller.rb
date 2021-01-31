@@ -10,7 +10,13 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
-
+    request = PaypalShipping::OrderGetShipping::new(@order.paypal.transaction_id, @order.tracking)
+    begin
+      @response = PaypalClient::client.execute(request)
+    rescue => e
+      puts e.result
+      flash[:danger] = e.result
+    end
   end
 
   def shipment
