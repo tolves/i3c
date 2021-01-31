@@ -15,13 +15,9 @@ class ApplicationController < ActionController::Base
     @current_ability ||= current_admin ? Ability.new(current_admin) : Ability.new(current_user)
   end
 
-  rescue_from StandardError do |exception|
-    puts exception.message
-    flash[:danger] = exception.message
-    respond_to do |format|
-      format.json { head :forbidden, content_type: 'text/html' }
-      format.html { redirect_to(root_path) }
-      format.js { head :forbidden, content_type: 'text/html' }
-    end
-  end
+  # rescue_from StandardError do |exception|
+  #   puts exception.message
+  #   raise flash[:danger] = exception.message
+  #   respond(:standard_error, 500, exception.message)
+  # end
 end
