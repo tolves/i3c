@@ -187,6 +187,7 @@ GEM
       ffi (~> 1.0)
     redis (4.2.5)
     regexp_parser (1.8.2)
+    render_async (2.1.8)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
@@ -291,6 +292,7 @@ DEPENDENCIES
   rails (~> 6.1.1)
   rails-perftest
   redis (~> 4.0)
+  render_async
   rmagick
   rspec-rails (~> 4.0.2)
   ruby-prof

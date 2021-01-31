@@ -34,6 +34,9 @@ gem 'devise'
 # provide icons
 gem 'font-awesome-rails'
 
+# Partials render asynchronously and let users see your page faster than using regular rendering.
+gem 'render_async'
+
 # imagemagick or graphicsmagick needed to be installed first
 # avatar processing
 gem 'image_processing', '~> 1.2'
