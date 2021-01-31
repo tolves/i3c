@@ -43,6 +43,10 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
+  def history
+    @histories = Product.history
+  end
+
   private
 
   def params_product

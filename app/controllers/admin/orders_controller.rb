@@ -18,6 +18,10 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def history
+    @histories = Product.history
+  end
+
   private
 
   def params_shipment

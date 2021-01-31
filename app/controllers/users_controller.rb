@@ -35,6 +35,10 @@ class UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  def history
+    @histories = Product.history
+  end
+
   private
 
   def params_user

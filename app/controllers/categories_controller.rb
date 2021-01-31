@@ -44,6 +44,10 @@ class CategoriesController < ApplicationController
     @products = @category.products.in_stock
   end
 
+  def history
+    @histories = Product.history
+  end
+
   private
 
   def params_category
