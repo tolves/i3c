@@ -9,9 +9,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
-    request = OrdersGetRequest::new(@order.paypal.orderID)
-    # request.prefer("return=representation")
-    @response = PaypalClient::client.execute(request)
 
   end
 
@@ -20,6 +17,13 @@ class Admin::OrdersController < ApplicationController
       @order.update! params_shipment
       redirect_to admin_orders_path
     end
+  end
+
+  def paypal
+    request = OrdersGetRequest::new(@order.paypal.orderID)
+    # request.prefer("return=representation")
+    @response = PaypalClient::client.execute(request)
+    render partial: 'admin/orders/paypal'
   end
 
   def history

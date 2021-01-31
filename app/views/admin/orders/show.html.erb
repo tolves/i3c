@@ -1,1 +1,4 @@
 <%= @order.inspect %>
+<%= render_async paypal_admin_order_path(@order) %>
+
+<%= content_for :render_async %>

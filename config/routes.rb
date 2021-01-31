@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :orders do
       match 'shipment', on: :member, via: [:get, :patch]
+      get :paypal, on: :member, via: :get
       get :history, on: :collection
     end
     resources :products do
