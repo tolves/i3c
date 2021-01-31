@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_121632) do
+ActiveRecord::Schema.define(version: 2021_01_31_190710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_121632) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "payer"
     t.text "items"
+    t.string "transaction_id"
     t.index ["order_id"], name: "index_paypals_on_order_id"
   end
 
