@@ -1,4 +1,5 @@
 include PayPalCheckoutSdk::Orders
+
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
   load_and_authorize_resource :order
@@ -14,15 +15,21 @@ class Admin::OrdersController < ApplicationController
 
   def shipment
     if params[:order]
-      @order.update! params_shipment
+      if send_shipment_to_paypal.status_code == 200
+        @order.update! params_shipment
+      end
       redirect_to admin_orders_path
     end
   end
 
   def paypal
-    request = OrdersGetRequest::new(@order.paypal.orderID)
-    # request.prefer("return=representation")
-    @response = PaypalClient::client.execute(request)
+    @request = OrdersGetRequest::new(@order.paypal.orderID)
+    begin
+      @response = PaypalClient::client.execute(@request)
+    rescue => e
+      puts e.result
+      flash[:danger] = e.result
+    end
     render partial: 'admin/orders/paypal'
   end
 
@@ -36,4 +43,18 @@ class Admin::OrdersController < ApplicationController
     params[:order].permit(:courier, :tracking)
   end
 
+  def send_shipment_to_paypal
+    # send shipment info to paypal
+    request = PaypalShipping::OrderUpdateShipping::new
+    request.request_body({ trackers: [{ transaction_id: "#{@order.paypal.transaction_id}", tracking_number: "#{params_shipment[:tracking]}", status: "SHIPPED", carrier: "#{params_shipment[:courier]}" }] })
+
+    begin
+      response = PaypalClient::client.execute(request)
+    rescue => e
+      puts e.result
+      flash[:danger] = e.result
+    end
+    puts response
+    response
+  end
 end
