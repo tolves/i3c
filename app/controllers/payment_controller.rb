@@ -23,7 +23,7 @@ class PaymentController < ApplicationController
     result = response[:result]
 
     if response[:status_code] == 201 && result[:status] == 'COMPLETED'
-      @order.create_paypal!(orderID: result[:id], data: data, response: response, payer: result[:payer], items: result[:purchase_units][0][:items])
+      @order.create_paypal!(orderID: result[:id], data: data, response: response, payer: result[:payer], items: result[:purchase_units][0][:items], transaction_id: result[:purchase_units][0][:payments][:captures][0][:id])
       @order.status = :paid
       @order.save!
     end
