@@ -32,8 +32,11 @@ This is a web application that provides customisation services for gaming PC.
 - [x] Product inventory - 1 when ordered (outbound)
 - [x] Account profile
 - [ ] Orders statistics
-- [ ] Order cancel, shipped status update
+- [x] Order shipped status update
+- [ ] print order label
 - [x] paypal sandbox
+- [ ] email setting
 - [ ] email async
+- [ ] view cache
 - [ ] update order information to paypal by api
 - [x] replace inbound with inventory

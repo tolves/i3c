@@ -1,3 +1,4 @@
+include PayPalCheckoutSdk::Orders
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
   load_and_authorize_resource :order
@@ -8,6 +9,9 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
+    request = OrdersGetRequest::new(@order.paypal.orderID)
+    # request.prefer("return=representation")
+    @response = PaypalClient::client.execute(request)
 
   end
 
