@@ -13,16 +13,21 @@ Rails.application.routes.draw do
     resources :categories do
       post 'meta_data', on: :member
       post 'products', on: :member
+      get :history, on: :collection
     end
-    resources :users
+    resources :users do
+      get :history, on: :collection
+    end
   end
 
   namespace :admin do
     resources :orders do
       match 'shipment', on: :member, via: [:get, :patch]
+      get :history, on: :collection
     end
     resources :products do
       match 'inbound', on: :member, via: [:get, :post]
+      get :history, on: :collection
     end
   end
 

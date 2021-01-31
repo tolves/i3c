@@ -7,6 +7,6 @@
     <a class="nav-link" href="#">Export</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">History</a>
+    <%= nav_link :history, send('history_admin_' + controller_name + '_path') %>
   </li>
 <% end %>
